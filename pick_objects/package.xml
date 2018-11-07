@@ -56,7 +56,7 @@
   <exec_depend>move_base_msgs</exec_depend>
   <exec_depend>actionlib</exec_depend>
   <build_export_depend>roscpp</build_export_depend>
-  <build_export_depend>move_base_ms</build_export_depend>
+  <build_export_depend>move_base_msgs</build_export_depend>
   <build_export_depend>actionlib</build_export_depend>
    
 

@@ -19,26 +19,53 @@ int main(int argc, char** argv){
 
   move_base_msgs::MoveBaseGoal goal;
 
+
   // set up the frame parameters
   goal.target_pose.header.frame_id = "map";
   goal.target_pose.header.stamp = ros::Time::now();
 
-  // Define a position and orientation for the robot to reach
+  // Define a position and orientation for the robot to reach pickup goal
   goal.target_pose.pose.position.x = 1.0;
+  goal.target_pose.pose.position.y = 2.20
   goal.target_pose.pose.orientation.w = 1.0;
 
    // Send the goal position and orientation for the robot to reach
-  ROS_INFO("Sending goal");
+  ROS_INFO("Sending pickup goal");
   ac.sendGoal(goal);
+  
+  
 
   // Wait an infinite time for the results
   ac.waitForResult();
 
   // Check if the robot reached its goal
   if(ac.getState() == actionlib::SimpleClientGoalState::SUCCEEDED)
-    ROS_INFO("Hooray, the base moved 1 meter forward");
+    ROS_INFO("Hooray, robot reached pickup goal");
   else
-    ROS_INFO("The base failed to move forward 1 meter for some reason");
+    ROS_INFO("The robot failed to reached pickup goal for some reason");
+  
+  // Wait for 5 seconds
+  ros::Duration(5.0).sleep()
+    
+  // Define a position and orientation for the robot to reach drop off goal
+  goal.target_pose.pose.position.x = 4.0;
+  goal.target_pose.pose.position.y = -4.20
+  goal.target_pose.pose.orientation.w = 1.0;
+
+   // Send the goal position and orientation for the robot to reach
+  ROS_INFO("Sending dropoff goal");
+  ac.sendGoal(goal);
+  
+   // Wait an infinite time for the results
+  ac.waitForResult();
+
+  // Check if the robot reached its goal
+  if(ac.getState() == actionlib::SimpleClientGoalState::SUCCEEDED)
+    ROS_INFO("Hooray, robot reached dropoff goal");
+  else
+    ROS_INFO("The robot failed to reached dropoff goal for some reason");
+  
+  
 
   return 0;
 }
