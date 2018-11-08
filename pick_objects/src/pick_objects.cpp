@@ -48,8 +48,8 @@ int main(int argc, char** argv){
   ros::Duration(5.0).sleep();
     
   // Define a position and orientation for the robot to reach drop off goal
-  goal.target_pose.pose.position.x = 4.0;
-  goal.target_pose.pose.position.y = -4.20;
+  goal.target_pose.pose.position.x = 2.0;
+  goal.target_pose.pose.position.y = -2.20;
   goal.target_pose.pose.orientation.w = 1.0;
 
    // Send the goal position and orientation for the robot to reach
