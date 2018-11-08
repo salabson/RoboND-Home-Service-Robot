@@ -1,4 +1,4 @@
-include <ros/ros.h>
+#include <ros/ros.h>
 #include <move_base_msgs/MoveBaseAction.h>
 #include <actionlib/client/simple_action_client.h>
 
@@ -26,7 +26,7 @@ int main(int argc, char** argv){
 
   // Define a position and orientation for the robot to reach pickup goal
   goal.target_pose.pose.position.x = 1.0;
-  goal.target_pose.pose.position.y = 2.20
+  goal.target_pose.pose.position.y = 2.20;
   goal.target_pose.pose.orientation.w = 1.0;
 
    // Send the goal position and orientation for the robot to reach
@@ -45,11 +45,11 @@ int main(int argc, char** argv){
     ROS_INFO("The robot failed to reached pickup goal for some reason");
   
   // Wait for 5 seconds
-  ros::Duration(5.0).sleep()
+  ros::Duration(5.0).sleep();
     
   // Define a position and orientation for the robot to reach drop off goal
   goal.target_pose.pose.position.x = 4.0;
-  goal.target_pose.pose.position.y = -4.20
+  goal.target_pose.pose.position.y = -4.20;
   goal.target_pose.pose.orientation.w = 1.0;
 
    // Send the goal position and orientation for the robot to reach
