@@ -13,7 +13,7 @@ int main(int argc, char** argv){
   MoveBaseClient ac("move_base", true);
   
   // set robot state in parameter server
-  ros::param::set(robot_state, "start_point")
+  ros::param::set("/robot_state", "start_point");
 
   // Wait 5 sec for move_base action server to come up
   while(!ac.waitForServer(ros::Duration(5.0))){
@@ -52,14 +52,16 @@ int main(int argc, char** argv){
   ac.waitForResult();
 
   // Check if the robot reached its goal
-  if(ac.getState() == actionlib::SimpleClientGoalState::SUCCEEDED)
+  if(ac.getState() == actionlib::SimpleClientGoalState::SUCCEEDED){
     ROS_INFO("Hooray, robot reached pickup goal");
     // set robot state in parameter server
- 	 ros::param::set(robot_state, "picked_up")
-  else
+ 	 ros::param::set("/robot_state", "picked_up");
+  }
+  else {
     ROS_INFO("The robot failed to reached pickup goal for some reason");
   	// set robot state in parameter server
- 	 ros::param::set(robot_state, "fail_to_pickup")
+ 	 ros::param::set("/robot_state", "fail_to_pickup");
+  }
   
   // Wait for 5 seconds
   ros::Duration(5.0).sleep();
@@ -72,14 +74,16 @@ int main(int argc, char** argv){
   ac.waitForResult();
 
   // Check if the robot reached its goal
-  if(ac.getState() == actionlib::SimpleClientGoalState::SUCCEEDED)
+  if(ac.getState() == actionlib::SimpleClientGoalState::SUCCEEDED) {
     ROS_INFO("Hooray, robot reached dropoff goal");
   	// set robot state in parameter server
-  	ros::param::set(robot_state, "dropped_off")
-  else
+  	ros::param::set("/robot_state", "dropped_off");
+  }
+  else {
     ROS_INFO("The robot failed to reached dropoff goal for some reason");
   	// set robot state in parameter server
- 	 ros::param::set(robot_state, "fail_to_dropoff")
+ 	 ros::param::set("/robot_state", "fail_to_dropoff");
+  }
   
   
 
