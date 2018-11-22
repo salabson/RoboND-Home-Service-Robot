@@ -81,7 +81,7 @@
              marker.pose.position.x = 0.4;
       		 marker.pose.position.y = 0.8;
        		 marker.pose.position.z = 0.99;
-             marker.action = visualization_msgs::Marker::DELETE;
+             marker.action = visualization_msgs::Marker::ADD;
       		 marker_pub.publish(marker); 
              //sleep for 5s
              ros::Duration(5.0).sleep();
